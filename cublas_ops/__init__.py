@@ -1,5 +1,5 @@
 import math
-from typing import Literal, Optional
+from typing import Literal, Optional, Any
 
 import torch
 from cublas_ops_ext import _simt_hgemv
@@ -28,7 +28,8 @@ class StaticState:
     }
 
     @classmethod
-    def get(cls, __name: str, device: torch.device) -> torch.Any:
+    # def get(cls, __name: str, device: torch.device) -> torch.Any:
+    def get(cls, __name: str, device: torch.device) -> Any:
         global has_moved
         idx = device.index if device.index is not None else 0
         if not has_moved[idx]:
